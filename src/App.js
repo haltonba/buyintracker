@@ -19,13 +19,13 @@ export default class App extends Component {
   names = () => {
     let array = []
     for(let i = 0; i < this.state.items.length; i++) {
-        let player = {
-          "name": this.state.items[i].split(" ")[0],
-          "in": 0,
-          "out": 0,
-          "owed": 0
-        }
-        array.push(player)
+      let player = {
+        "name": this.state.items[i].split(" ")[0],
+        "in": 0,
+        "out": 0,
+        "owed": 0
+      }
+      array.push(player)
     }
     let filtered = [];
     array.forEach(function(item){
