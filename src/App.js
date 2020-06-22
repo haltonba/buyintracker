@@ -37,19 +37,39 @@ export default class App extends Component {
     return filtered
   }
 
-  // tracker = () => {
-  //   let names = names()
-  //   console.log(names)
-  // }
-
+  tracker = () => {
+    let names = this.names()
+    for(let i = 0; i < this.state.items.length; i++) {
+      let split = this.state.items[i].split(" ")
+      if (split[1] === "participation") {
+        let person = names.find(x => x.name === split[0])
+        let amount = split[6].replace(",", "")
+        person.in += (parseInt(amount) / 10)
+        let index = names.findIndex(x => x.name == split[0])
+        names.splice(index, 1, person)
+      }
+      else if (split[1] === "quits") {
+        let person = names.find(x => x.name === split[0])
+        let amount = split[8].replace(",", "")
+        person.out += (parseInt(amount) / 10)
+        let index = names.findIndex(x => x.name == split[0])
+        names.splice(index, 1, person)
+      }
+    }
+    names.forEach(person => {
+      person.owed = Math.round(person.out - person.in)
+    })
+    console.log(names)
+    return names
+  }
 
 
   render() {
-    console.log(this.names())
+    this.tracker()
     return (
       <div>
           <Input handleSubmit={this.handleSubmit}/>
-          <Table/>
+          <Table people={this.tracker()}/>
       </div>
     )
   }
