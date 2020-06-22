@@ -59,7 +59,6 @@ export default class App extends Component {
     names.forEach(person => {
       person.owed = Math.round(person.out - person.in)
     })
-    console.log(names)
     return names
   }
 
