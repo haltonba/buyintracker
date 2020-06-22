@@ -5,7 +5,7 @@ export default class Table extends Component {
 
     renderList = () => {
         return this.props.people.map(person => {
-            return <Row/>
+            return <Row person={person}/>
         })
     }
 
@@ -19,6 +19,7 @@ export default class Table extends Component {
                     <th style={{padding: "0 100px 0 100px"}}>Out</th>
                     <th style={{padding: "0 100px 0 100px"}}>Owed</th>
                 </tr>
+                {this.renderList()}
             </table>
         </div>
     )
