@@ -55,9 +55,25 @@ export default class App extends Component {
         let index = names.findIndex(x => x.name == split[0])
         names.splice(index, 1, person)
       }
+      else if (split[1] === "created") {
+        let person = names.find(x => x.name === split[0])
+        let amount = split[8].replace(",", "")
+        person.in += (parseInt(amount) / 10)
+        let index = names.findIndex(x => x.name == split[0])
+        names.splice(index, 1, person)
+      }
+      else if (split[1] === "stack") {
+        let person = names.find(x => x.name === split[0])
+        let rAmount = split[5].replace(",", "")
+        let lAmount = split[3]
+        let amount = rAmount - lAmount
+        person.in += (parseInt(amount) / 10)
+        let index = names.findIndex(x => x.name == split[0])
+        names.splice(index, 1, person)
+      }
     }
     names.forEach(person => {
-      person.owed = Math.round(person.out - person.in)
+      person.owed = person.out - person.in
     })
     return names
   }
