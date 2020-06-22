@@ -65,7 +65,6 @@ export default class App extends Component {
 
 
   render() {
-    this.tracker()
     return (
       <div>
           <Input handleSubmit={this.handleSubmit}/>
